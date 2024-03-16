@@ -9,7 +9,6 @@ export const Button = styled.button`
   cursor: pointer;
   background-color: #046ee5;
   color: white;
-  font-weight: 600;
   font-size: 16px;
   max-width: 350px;
 `;
