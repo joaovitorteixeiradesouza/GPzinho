@@ -1,0 +1,58 @@
+{
+  "projects": [
+    {
+      "id": "8704",
+      "name": "teste123",
+      "budget": "567",
+      "category": {
+        "id": "1",
+        "name": "Infraestrutura"
+      },
+      "cost": 0,
+      "services": [],
+      "user_email": "joaovitorteixeiradesouza6@gmail.com"
+    },
+    {
+      "id": "4419",
+      "name": "testejoao",
+      "budget": "1000",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": [],
+      "user_email": "joaovitorteixeiradesouza7@gmail.com"
+    },
+    {
+      "id": "71f7",
+      "name": "testeNovo2",
+      "budget": "6890",
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
+      "cost": 0,
+      "services": [],
+      "user_email": "joaovitorteixeiradesouza7@gmail.com"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Infraestrutura"
+    },
+    {
+      "id": 2,
+      "name": "Desenvolvimento"
+    },
+    {
+      "id": 3,
+      "name": "Design"
+    },
+    {
+      "id": 4,
+      "name": "Planejamento"
+    }
+  ]
+}
