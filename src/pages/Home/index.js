@@ -7,7 +7,8 @@ import * as C from "./styles";
 import Footer from "../../components/Footer/Footer";
 import StylesHome from "./Home.module.css";
 import LinkButton from "../../components/LinkButton/LinkButton";
-import Savings from '../../img/Banner.png'
+import Savings from '../../img/Banner.png';
+import Container from "../../components/Container/Container";
 
 const Home = () => {
   const { signout } = useAuth();
@@ -16,7 +17,7 @@ const Home = () => {
   return (
     <>
       <NavBar></NavBar>
-      <C.Container>
+      <Container>
         <section className={StylesHome.home_container}>
             <h1>
                 Bem-vindo ao <span>GPzinho</span>
@@ -25,7 +26,7 @@ const Home = () => {
             <LinkButton to='/newproject' text='Criar Projeto'></LinkButton>
             <img src={Savings} alt="Gestor de Projetos"></img>
         </section>
-      </C.Container>
+      </Container>
       <Footer></Footer>
     </>
   );

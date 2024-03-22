@@ -3,6 +3,10 @@
     color: #fff;
     padding: 1em;
     text-align: center;
+    width: 100%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
 }
 
 .social_list {

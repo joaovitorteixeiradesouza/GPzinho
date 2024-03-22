@@ -1,5 +1,9 @@
-section {
-    height: 451px;
+.project_container {
+    padding: 2em;
+}
+
+.title_container {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2em;
 }
