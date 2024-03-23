@@ -6,6 +6,7 @@ import Signup from '../pages/Signup';
 import Projects from '../pages/Projects/Projects';
 import Contact from '../pages/Contact/Contact';
 import NewProject from '../pages/NewProject/NewProject';
+import Project from '../pages/Project/Project';
 import useAuth from '../hooks/useAuth';
 
 const Private = ({Item}) => {
@@ -25,6 +26,7 @@ const RoutesApp = () => {
                     <Route path="/projects" element={<Projects></Projects>}></Route>
                     <Route path="/contact" element={<Contact></Contact>}></Route>
                     <Route path="/newproject" element={<NewProject></NewProject>}></Route>
+                    <Route path="/project/:id" element={<Project></Project>}></Route>
                     <Route path="*" element={<Signin></Signin>}/>
                 </Routes>
             </Fragment>

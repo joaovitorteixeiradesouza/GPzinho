@@ -1,27 +1,28 @@
 {
   "projects": [
     {
-      "id": "76db",
-      "name": "teste2124",
-      "budget": "100",
-      "category": {
-        "id": "4",
-        "name": "Planejamento"
-      },
-      "cost": 0,
-      "services": [],
-      "user_email": "joaovitorteixeiradesouza6@gmail.com"
-    },
-    {
       "id": "32e0",
-      "name": "teste123dsfdf",
-      "budget": "123",
+      "name": "Implantação de microServiços",
+      "budget": "1500",
       "category": {
         "id": "3",
         "name": "Design"
       },
-      "cost": 0,
-      "services": [],
+      "cost": 600,
+      "services": [
+        {
+          "name": "Contratar Equipe",
+          "cost": "500",
+          "description": "Contratação de pessoal ",
+          "id": "86a447e4-f3d4-4f23-a7c7-67a004b199cb"
+        },
+        {
+          "name": "Alocar Recursos",
+          "cost": "100",
+          "description": "teste",
+          "id": "7f11f7a6-ae82-48f1-9da1-852093e09227"
+        }
+      ],
       "user_email": "joaovitorteixeiradesouza6@gmail.com"
     },
     {
@@ -44,8 +45,27 @@
         "id": "1",
         "name": "Infraestrutura"
       },
-      "cost": 0,
-      "services": [],
+      "cost": 258,
+      "services": [
+        {
+          "name": "teste",
+          "cost": "123",
+          "description": "teste",
+          "id": "d542b042-e7ff-4a77-bff2-3f3a1627d424"
+        },
+        {
+          "name": "teste123",
+          "cost": "123",
+          "description": "teste",
+          "id": "81390e29-1088-490b-aefb-1b943f38f1f2"
+        },
+        {
+          "name": "Contratar Equipe",
+          "cost": "12",
+          "description": "100",
+          "id": "a199484b-e786-4d7b-adad-b1458c8eb134"
+        }
+      ],
       "user_email": "joaovitorteixeiradesouza6@gmail.com"
     },
     {
@@ -55,6 +75,56 @@
       "category": {
         "id": "2",
         "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": [],
+      "user_email": "joaovitorteixeiradesouza6@gmail.com"
+    },
+    {
+      "id": "1d80",
+      "name": "teste999",
+      "budget": "12",
+      "category": {
+        "id": "4",
+        "name": "Planejamento"
+      },
+      "cost": 0,
+      "services": [],
+      "user_email": "joaovitorteixeiradesouza10@gmail.com"
+    },
+    {
+      "id": "2499",
+      "name": "Lista de RM",
+      "budget": "1000",
+      "category": {
+        "id": "4",
+        "name": "Planejamento"
+      },
+      "cost": 100,
+      "services": [
+        {
+          "name": "teste",
+          "cost": "100",
+          "description": "teste",
+          "id": "2348fa9d-0699-4414-8a42-36a9ca424e97"
+        }
+      ],
+      "user_email": "claudioteixeiradesouza@gmail.com"
+    },
+    {
+      "id": "2133",
+      "name": "tete",
+      "cost": 0,
+      "services": [],
+      "user_email": "claudioteixeiradesouza@gmail.com"
+    },
+    {
+      "id": "6409",
+      "name": "teste30",
+      "budget": "100",
+      "category": {
+        "id": "4",
+        "name": "Planejamento"
       },
       "cost": 0,
       "services": [],

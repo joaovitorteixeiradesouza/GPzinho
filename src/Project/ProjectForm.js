@@ -9,8 +9,22 @@ function ProjectForm({handleSubmit, btnText, projectData}){
 
     const [categories, setCategories] = useState([]);
     const [project, setProject] = useState(projectData || {});
+    const [projectDataGeral, setProjectDataGeral] = useState([]);
 
     useEffect(() => {
+
+        fetch(`http://localhost:5000/projects`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then((resp) => resp.json())
+        .then((data) => {
+            setProjectDataGeral(data)
+        })
+        .catch((err) => console.log(err))
+
         
         fetch("http://localhost:5000/categories", {
             method: "GET", 
@@ -27,6 +41,20 @@ function ProjectForm({handleSubmit, btnText, projectData}){
 
     const submit = (e) => {
         e.preventDefault();
+
+        // Verificar se o projeto já existe com o mesmo nome
+        const existingProject = projectDataGeral.find(
+            (existingProject) => existingProject.name === project.name
+        );
+        if (existingProject) {
+            alert('Um projeto com o mesmo nome já existe. Por favor, escolha outro nome.');
+            return;
+        }
+
+        if (project.budget <= 0) {
+            alert('O orçamento deve ser maior que zero.');
+            return;
+        }
         handleSubmit(project);
     }
 

@@ -1,5 +1,3 @@
-section {
-    height: 451px;
-    display: flex;
-    align-items: center;
+.container_contact {
+    margin: 0 auto;
 }
