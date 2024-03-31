@@ -11,6 +11,7 @@ import ServiceForm from '../../Service/ServiceForm';
 import ServiceCard from '../../Service/ServiceCard';
 import NavBar from '../../components/NavBar/NavBar';
 import Footer from '../../components/Footer/Footer';
+import Service from '../Service/Service';
 
 function Project() {
     const {id} = useParams();
@@ -66,11 +67,11 @@ function Project() {
         .catch((err) => console.log(err))
     }
 
-    function createService() {
+    function createService(ServiceFormulario) {
         setMessage('');
 
         // last service
-        const lastService = project.services[project.services.length - 1];
+        const lastService = ServiceFormulario;
 
         lastService.id = v4();
 
@@ -81,13 +82,16 @@ function Project() {
         // maximum value validation 
         if (newCost > parseFloat(project.budget)) {
             alert('Orçamento ultrapassado, verifique o valor do serviço');
-            project.services.pop();
+            //project.services.pop();
             return false;
         }
 
         // add service cost to project total cost
 
         project.cost = newCost;
+        lastService.projectID = project.id;
+        lastService.equipe = [];
+        project.services.push(lastService);
 
         // update project 
         fetch(`http://localhost:5000/projects/${project.id}`, {
@@ -172,7 +176,8 @@ function Project() {
                                         <ProjectForm 
                                         handleSubmit={editPost} 
                                         btnText="Concluir edição" 
-                                        projectData={project}></ProjectForm>
+                                        projectData={project}
+                                        projectID={project.id}></ProjectForm>
                                     </div>
                                 )}
                             </div>
@@ -187,7 +192,8 @@ function Project() {
                                             <ServiceForm 
                                             handleSubmit={createService}
                                             btnText="Adicionar tarefa"
-                                            projectData={project}></ServiceForm>
+                                            projectData={{}}
+                                            projectID={project.id}></ServiceForm>
                                         )
                                     }
                                 </div>
@@ -198,6 +204,7 @@ function Project() {
                                     services.map((service) => (
                                         <ServiceCard
                                         id={service.id}
+                                        projectID = {project.id}
                                         name={service.name}
                                         cost={service.cost}
                                         description={service.description}
@@ -207,7 +214,7 @@ function Project() {
                                         </ServiceCard>
                                     ))
                                 }
-                                {services.length === 0 && <p>Não há serviços cadastrados</p>}
+                                {services.length === 0 && <p>Não há tarefas cadastradas</p>}
                             </Container>
                         </Container>
                     </div>

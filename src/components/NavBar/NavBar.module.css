@@ -26,11 +26,10 @@
     color: gray;
 }
 
-img {
+.classImg {
     width: 60px;
     height: 60px;
 }
-
 ul button:hover {
     background-color: transparent;
     color: red;

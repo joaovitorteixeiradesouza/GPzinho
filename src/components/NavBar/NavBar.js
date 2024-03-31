@@ -14,7 +14,7 @@ function NavBar(){
         <nav className={Styles.navbar}>
             <Container>
                 <Link>
-                    <img src={Logo} alt="Gestor de Projetos"></img>
+                    <img src={Logo} alt="Gestor de Projetos" className={Styles.classImg}></img>
                 </Link>       
                 <ul className={Styles.list}>
                     <li className={Styles.item}>

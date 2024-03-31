@@ -1,21 +1,52 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Input from '../components/Form/Input/Input';
 import SumbitButton from '../components/Form/SubmitButton/SubmitButton';
 import Styles from '../Project/ProjectForm.module.css';
+import TextArea from '../components/Form/TextArea/TextArea';
 
-function ServiceForm({handleSubmit, btnText, projectData}) {
-    const [service, setService] = useState([]);
+function ServiceForm({handleSubmit, btnText, projectData, projectID}) {
+    const [service, setService] = useState(projectData || {});
+    const [projectDataGeral, setProjectDataGeral] = useState([]);
     
+    useEffect(() => {
+
+        fetch(`http://localhost:5000/projects/${projectID}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then((resp) => resp.json())
+        .then((data) => {
+            setProjectDataGeral(data)
+        })
+        .catch((err) => console.log(err))
+
+        
+    }, []);
+
+
     function onSubmit(e){
         e.preventDefault();
 
-        // Verificar se o projeto já existe com o mesmo nome
-        const existingProject = projectData.services.find(
+        // Verificar se a tarefa já existe com o mesmo nome
+        const existingProject = projectDataGeral.services.find(
             (existingProject) => existingProject.name === service.name
         );
-        if (existingProject) {
-            alert('Uma tarefa com o mesmo nome já existe. Por favor, escolha outro nome.');
-            return;
+        const serviceOld = projectDataGeral.services.find( (servicesOld) => servicesOld.id == service.id)
+        if (serviceOld == undefined){
+            if (existingProject) {
+                alert('Uma tarefa com o mesmo nome já existe. Por favor, escolha outro nome.');
+                return;
+            }
+        } else {
+            if (service.name != serviceOld.name){
+                if (existingProject) {
+                    alert('Uma tarefa com o mesmo nome já existe. Por favor, escolha outro nome.');
+                    return;
+                }
+                
+            }
         }
         
         if (service.cost <= 0) {
@@ -23,8 +54,7 @@ function ServiceForm({handleSubmit, btnText, projectData}) {
             return;
         }
 
-        projectData.services.push(service);
-        handleSubmit(projectData);
+        handleSubmit(service);
     }
 
     function handleChange(e) {
@@ -38,19 +68,22 @@ function ServiceForm({handleSubmit, btnText, projectData}) {
             text="Nome da tarefa"
             name="name"
             placeholder="Insira o nome da tarefa"
-            handleOnChange={handleChange}></Input>
+            handleOnChange={handleChange}
+            value={service.name ? service.name : ''}></Input>
             <Input 
             type="number"
             text="Custo da tarefa"
             name="cost"
             placeholder="Insira o valor total"
-            handleOnChange={handleChange}></Input>
-            <Input 
+            handleOnChange={handleChange}
+            value={service.cost ? service.cost : ''}></Input>
+            <TextArea 
             type="text"
             text="Descrição da tarefa"
             name="description"
             placeholder="Descreva a tarefa"
-            handleOnChange={handleChange}></Input>
+            handleOnChange={handleChange}
+            value={service.description ? service.description : ''}></TextArea>
             <SumbitButton text={btnText}></SumbitButton>
         </form>
     );

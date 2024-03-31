@@ -1,26 +1,21 @@
 import Styles from '../Project/ProjectCard.module.css';
-import {BsPencil, BsFillTrashFill} from 'react-icons/bs';
-import {Link} from 'react-router-dom';
+import Logo from '../img/Empresario.png';
+import {BsFillTrashFill} from 'react-icons/bs';
 
-function ServiceCard({id, projectID, name, cost, description, handleRemove}) {
+function TeamCard({id, name, funcao, handleRemove}) {
     const remove = (e) => {
         e.preventDefault();
-        handleRemove(id, cost);
+        handleRemove(id, name);
     }
 
     return (
         <div className={Styles.project_card}>
+            <img src={Logo} alt="Empresário"></img>
             <h4>{name}</h4>
             <p>
-                <span>Custo total:</span>R${cost}
-            </p>
-            <p>
-                {description}
+                Função: {funcao}
             </p>
             <div className={Styles.project_card_actions}>
-                <Link to={`/project/${projectID}/service/${id}`}>
-                    <BsPencil></BsPencil> Editar
-                </Link>
                 <button onClick={remove}>
                  <BsFillTrashFill></BsFillTrashFill>
                  Excluir
@@ -30,4 +25,4 @@ function ServiceCard({id, projectID, name, cost, description, handleRemove}) {
     );
 }
 
-export default ServiceCard;
+export default TeamCard;

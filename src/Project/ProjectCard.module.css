@@ -85,3 +85,14 @@
     background-color: #046ee5;
     color: white;
 }
+
+img {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    margin-bottom: 10px;
+}
