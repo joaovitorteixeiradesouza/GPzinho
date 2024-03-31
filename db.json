@@ -61,14 +61,6 @@
       "cost": 300,
       "services": [
         {
-          "name": "teste2",
-          "cost": "100",
-          "description": "teste",
-          "id": "2660c7b5-48a6-4719-ba2b-725b8bbea048",
-          "projectID": "b240",
-          "equipe": []
-        },
-        {
           "name": "teste3",
           "cost": "100",
           "description": "teste",
@@ -88,6 +80,29 @@
               "funcao": {
                 "id": "2",
                 "name": "Testes"
+              }
+            }
+          ]
+        },
+        {
+          "name": "testeTarefa",
+          "cost": "100",
+          "description": "teste",
+          "id": "2660c7b5-48a6-4719-ba2b-725b8bbea048",
+          "projectID": "b240",
+          "equipe": [
+            {
+              "nameColab": "Fernando",
+              "funcao": {
+                "id": "3",
+                "name": "Responsável"
+              }
+            },
+            {
+              "nameColab": "Pedro Ribeiro Silva",
+              "funcao": {
+                "id": "1",
+                "name": "Desenvolvimento"
               }
             }
           ]
