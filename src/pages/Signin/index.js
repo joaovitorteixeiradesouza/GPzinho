@@ -19,15 +19,25 @@ const Signin = () => {
       return;
     }
 
-    const res = signin(email, senha);
+    handleSigninAsync();
 
-    if (res) {
-      setError(res);
-      return;
-    }
-
-    navigate("/home");
   };
+
+  const handleSigninAsync = async () => {
+    try {  
+      const res = await signin(email, senha);
+      if (res) {
+        setError(res);
+        return;
+      }
+
+      navigate("/home");
+    } catch (error) {
+        console.error('Erro durante o cadastro:', error);
+        // Tratar o erro, se necessário
+    }
+};
+
 
   return (
     <C.Container>

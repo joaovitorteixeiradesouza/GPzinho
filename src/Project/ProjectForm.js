@@ -10,10 +10,11 @@ function ProjectForm({handleSubmit, btnText, projectData}){
     const [categories, setCategories] = useState([]);
     const [project, setProject] = useState(projectData || {});
     const [projectDataGeral, setProjectDataGeral] = useState([]);
+    const userEmail = JSON.parse(localStorage.getItem("user_token")).email;
 
     useEffect(() => {
 
-        fetch(`http://localhost:5000/projects`, {
+        fetch(`http://localhost:5000/projects?user_email=${userEmail}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

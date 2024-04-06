@@ -6,9 +6,11 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Signup = () => {
+  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [emailConf, setEmailConf] = useState("");
   const [senha, setSenha] = useState("");
+  const [senhaConf, setSenhaConf] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -21,23 +23,42 @@ const Signup = () => {
     } else if (email !== emailConf) {
       setError("Os e-mails não são iguais");
       return;
-    }
-
-    const res = signup(email, senha);
-
-    if (res) {
-      setError(res);
+    } else if (senha !== senhaConf) {
+      setError("As senhas não são iguais");
       return;
     }
 
-    alert("Usuário cadatrado com sucesso!");
-    navigate("/");
+    handleSignupAsync();
+    
   };
+
+  const handleSignupAsync = async () => {
+    try {
+        const res = await signup(nome, email, senha);
+        if (res) {
+          setError(res);
+          return;
+        }
+    
+        alert("Usuário cadatrado com sucesso!");
+        navigate("/");
+        window.location.reload();
+    } catch (error) {
+        console.error('Erro durante o cadastro:', error);
+        // Tratar o erro, se necessário
+    }
+};
 
   return (
     <C.Container>
       <C.Label>CADASTRO</C.Label>
       <C.Content>
+        <Input
+          type="text"
+          placeholder="Digite seu nome completo"
+          value={nome}
+          onChange={(e) => [setNome(e.target.value), setError("")]}
+        />
         <Input
           type="email"
           placeholder="Digite seu E-mail"
@@ -55,6 +76,12 @@ const Signup = () => {
           placeholder="Digite sua Senha"
           value={senha}
           onChange={(e) => [setSenha(e.target.value), setError("")]}
+        />
+        <Input
+          type="password"
+          placeholder="Confirme sua Senha"
+          value={senhaConf}
+          onChange={(e) => [setSenhaConf(e.target.value), setError("")]}
         />
         <C.labelError>{error}</C.labelError>
         <Button Text="Inscrever-se" onClick={handleSignup} />

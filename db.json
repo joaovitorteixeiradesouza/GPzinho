@@ -1,126 +1,33 @@
 {
   "projects": [
     {
-      "id": "1f37",
-      "name": "testandonovamente",
-      "budget": "190",
-      "category": {
-        "id": "1",
-        "name": "Infraestrutura"
-      },
-      "cost": 0,
-      "services": [],
-      "user_email": "joaovitorteixeiradesouza7@gmail.com"
-    },
-    {
-      "id": "1d80",
-      "name": "teste999",
-      "budget": "12",
-      "category": {
-        "id": "4",
-        "name": "Planejamento"
-      },
-      "cost": 0,
-      "services": [],
-      "user_email": "joaovitorteixeiradesouza10@gmail.com"
-    },
-    {
-      "id": "2499",
-      "name": "Lista de RM",
-      "budget": "1000",
-      "category": {
-        "id": "4",
-        "name": "Planejamento"
-      },
-      "cost": 100,
-      "services": [
-        {
-          "name": "teste",
-          "cost": "100",
-          "description": "teste",
-          "id": "2348fa9d-0699-4414-8a42-36a9ca424e97"
-        }
-      ],
-      "user_email": "claudioteixeiradesouza@gmail.com"
-    },
-    {
-      "id": "2133",
-      "name": "tete",
-      "cost": 0,
-      "services": [],
-      "user_email": "claudioteixeiradesouza@gmail.com"
-    },
-    {
-      "id": "b240",
+      "id": "6660",
       "name": "TesteProjeto",
-      "budget": "10000",
+      "budget": "100000",
       "category": {
         "id": "2",
         "name": "Desenvolvimento"
       },
-      "cost": 300,
+      "cost": 10,
       "services": [
         {
-          "name": "teste3",
-          "cost": "100",
+          "name": "TesteTarefa",
+          "cost": "10",
           "description": "teste",
-          "id": "4ddff0ae-f5ff-45d6-9abb-6493aadcfddc",
-          "projectID": "b240",
-          "equipe": []
-        },
-        {
-          "name": "Teste10",
-          "cost": "100",
-          "description": "teste",
-          "id": "89bdfd6d-9618-4ed3-b660-6caabfbb1ebb",
-          "projectID": "b240",
+          "id": "cc78e2a9-a6e4-4b2f-b437-87a3f84f53ff",
+          "projectID": "6660",
           "equipe": [
             {
-              "nameColab": "Ronaldo",
+              "nameColab": "Pedro",
               "funcao": {
                 "id": "2",
                 "name": "Testes"
               }
             }
           ]
-        },
-        {
-          "name": "testeTarefa",
-          "cost": "100",
-          "description": "teste",
-          "id": "2660c7b5-48a6-4719-ba2b-725b8bbea048",
-          "projectID": "b240",
-          "equipe": [
-            {
-              "nameColab": "Fernando",
-              "funcao": {
-                "id": "3",
-                "name": "Responsável"
-              }
-            },
-            {
-              "nameColab": "Pedro Ribeiro Silva",
-              "funcao": {
-                "id": "1",
-                "name": "Desenvolvimento"
-              }
-            }
-          ]
         }
       ],
-      "user_email": "joaovitorteixeiradesouza6@gmail.com"
-    },
-    {
-      "id": "301a",
-      "name": "MARÇO",
-      "budget": "12222",
-      "category": {
-        "id": "4",
-        "name": "Planejamento"
-      },
-      "cost": 0,
-      "services": [],
-      "user_email": "joaovitorteixeiradesouza6@gmail.com"
+      "user_email": "joaovitorteixeiradesouza2@gmail.com"
     }
   ],
   "categories": [
@@ -153,6 +60,20 @@
     {
       "id": "3",
       "name": "Responsável"
+    }
+  ],
+  "users": [
+    {
+      "id": "bd3e",
+      "nome": "teste",
+      "email": "joaovitorteixeiradesouza1@gmail.com",
+      "password": "$2a$10$0Vm5Iw.7.QPlcPZI2V/iOe4VEz00eSjVEBaUZJ7aK5yKJBYlfUG26"
+    },
+    {
+      "id": "591a",
+      "nome": "Teste2",
+      "email": "joaovitorteixeiradesouza2@gmail.com",
+      "password": "$2a$10$H9OZq2LXlOHjPmE4QerPQObw7lwzlQxI0aDXozh8Jo7w23p6pLyde"
     }
   ]
 }
