@@ -86,9 +86,15 @@ function Service() {
         .then((resp) => resp.json())
         .then((data) => {
             setProject(data);
+            const foundService = data.services.find(service => service.id === serviceID);
+            if (foundService) {
+                setServicesForm(foundService);
+                setTeam(foundService.equipe);
+            } else {
+                console.log("Serviço não encontrado");
+            }
             setShowProjectForm(!showProjectForm);
             alert('Tarefa atualizada!');
-            window.location.reload();
         })
         .catch((err) => console.log(err))
     }
@@ -155,6 +161,25 @@ function Service() {
         setShowServiceForm(!showServiceForm);
     }
 
+    function formatDate(dateString) {
+        // Converta a string da data para um objeto Date
+        const date = new Date(dateString);
+    
+        // Verifique se a data é válida
+        if (isNaN(date.getTime())) {
+            return "Data inválida";
+        }
+    
+        // Extraia o dia, mês e ano da data
+        const day = String(date.getDate() + 1).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Adicionamos 1 porque os meses começam de zero
+        const year = date.getFullYear();
+    
+        // Montar a data formatada no formato dd/mm/aaaa
+        return `${day}/${month}/${year}`;
+    }
+
+
     return (
         <>
             <NavBar></NavBar>
@@ -174,10 +199,13 @@ function Service() {
                                 {!showProjectForm ? (
                                     <div className={Styles.project_info}>
                                         <p>
-                                            <span>Nome da Tarefa:</span> {servicesForm.name}
+                                            <span>Nome da tarefa:</span> {servicesForm.name}
                                         </p>
                                         <p>
                                             <span>Custo da tarefa:</span> R${servicesForm.cost}
+                                        </p>
+                                        <p>
+                                            <span>Data de conclusão da tarefa:</span> {formatDate(servicesForm.date)}
                                         </p>
                                         <p>
                                             <span>Descrição da tarefa:</span> {servicesForm.description}

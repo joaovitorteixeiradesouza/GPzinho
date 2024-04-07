@@ -146,6 +146,24 @@ function Project() {
         setShowServiceForm(!showServiceForm);
     }
 
+    function formatDate(dateString) {
+        // Converta a string da data para um objeto Date
+        const date = new Date(dateString);
+    
+        // Verifique se a data é válida
+        if (isNaN(date.getTime())) {
+            return "Data inválida";
+        }
+    
+        // Extraia o dia, mês e ano da data
+        const day = String(date.getDate() + 1).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Adicionamos 1 porque os meses começam de zero
+        const year = date.getFullYear();
+    
+        // Montar a data formatada no formato dd/mm/aaaa
+        return `${day}/${month}/${year}`;
+    }
+
     return (
         <>
             <NavBar></NavBar>
@@ -163,6 +181,9 @@ function Project() {
                                     <div className={Styles.project_info}>
                                         <p>
                                             <span>Categoria:</span> {project.category.name}
+                                        </p>
+                                        <p>
+                                            <span>Data de Conclusão:</span> {formatDate(project.date)}
                                         </p>
                                         <p>
                                             <span>Total de Orçamento:</span> R${project.budget}

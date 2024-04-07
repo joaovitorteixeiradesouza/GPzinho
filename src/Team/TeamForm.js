@@ -27,6 +27,20 @@ function TeamForm({handleSubmit, btnText, projectData}) {
     
     function onSubmit(e){
         e.preventDefault();
+
+        if (equipe.funcao) {
+            if (!equipe.nameColab | !equipe.funcao | equipe.funcao.id == "Selecione uma opção") {
+                alert("Preencha todos os campos");
+                return;
+            }
+        } else {
+            if (!equipe.nameColab | !equipe.funcao) {
+                alert("Preencha todos os campos");
+                return;
+            }
+        }
+
+
         service[0].equipe.push(equipe);
         //projectData.services.push(service);
         handleSubmit(service);

@@ -17,7 +17,7 @@ const Signup = () => {
   const { signup } = useAuth();
 
   const handleSignup = () => {
-    if (!email | !emailConf | !senha) {
+    if (!nome | !email | !emailConf | !senha | !senhaConf) {
       setError("Preencha todos os campos");
       return;
     } else if (email !== emailConf) {

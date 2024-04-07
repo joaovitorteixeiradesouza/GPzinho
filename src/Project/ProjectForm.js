@@ -42,20 +42,58 @@ function ProjectForm({handleSubmit, btnText, projectData}){
 
     const submit = (e) => {
         e.preventDefault();
+        if (project.category) {
+            if (!project.name | !project.budget | !project.category | project.category.id == "Selecione uma opção" | !project.date) {
+                alert("Preencha todos os campos");
+                return;
+            }
+        } else {
+            if (!project.name | !project.budget | !project.category | !project.date) {
+                alert("Preencha todos os campos");
+                return;
+            }
+        }
 
         // Verificar se o projeto já existe com o mesmo nome
         const existingProject = projectDataGeral.find(
             (existingProject) => existingProject.name === project.name
         );
-        if (existingProject) {
-            alert('Um projeto com o mesmo nome já existe. Por favor, escolha outro nome.');
-            return;
+        
+        const ProjectOld = projectDataGeral.find( (projectsOld) => projectsOld.id == project.id)
+        
+        if (ProjectOld == undefined) {
+            if (existingProject) {
+                alert('Um projeto com o mesmo nome já existe. Por favor, escolha outro nome.');
+                return;
+            }    
+        } else {
+            if (project.name != ProjectOld.name){
+                if (existingProject) {
+                    alert('Um projeto com o mesmo nome já existe. Por favor, escolha outro nome.');
+                    return;
+                }
+            }
         }
-
+        
         if (project.budget <= 0) {
             alert('O orçamento deve ser maior que zero.');
             return;
         }
+
+        const dateProject = new Date(project.date);
+
+        if (isNaN(dateProject.getTime())) {
+            alert('Data inválida.');
+            return;
+        }
+
+        const dateCurrent = new Date()
+
+        if (dateProject < dateCurrent) {
+            alert('Data não pode ser menor que a data atual');
+            return;
+        }
+
         handleSubmit(project);
     }
 
@@ -88,6 +126,13 @@ function ProjectForm({handleSubmit, btnText, projectData}){
             placeholder="Insira o orçamento total"
             handleOnChange={handleChange}
             value={project.budget? project.budget : ''}></Input>
+            <Input
+            type="date" 
+            text="Data de conclusão do projeto" 
+            name="date" 
+            placeholder="Insira a data final"
+            handleOnChange={handleChange}
+            value={project.date? project.date : ''}></Input>
             <Select 
             name="category_id" 
             text="Selecione a categoria" 

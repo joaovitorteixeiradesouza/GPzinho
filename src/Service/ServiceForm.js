@@ -29,6 +29,11 @@ function ServiceForm({handleSubmit, btnText, projectData, projectID}) {
     function onSubmit(e){
         e.preventDefault();
 
+        if (!service.name | !service.cost | !service.description | !service.date) {
+            alert("Preencha todos os campos");
+            return;
+        }
+
         // Verificar se a tarefa já existe com o mesmo nome
         const existingProject = projectDataGeral.services.find(
             (existingProject) => existingProject.name === service.name
@@ -51,6 +56,26 @@ function ServiceForm({handleSubmit, btnText, projectData, projectID}) {
         
         if (service.cost <= 0) {
             alert('O custo da tarefa deve ser maior que zero.');
+            return;
+        }
+
+        const dateProject = new Date(projectDataGeral.date);
+        const dataService = new Date(service.date);
+
+        if (isNaN(dataService.getTime())) {
+            alert('Data inválida.');
+            return;
+        }
+
+        const dateCurrent = new Date()
+
+        if (dataService < dateCurrent) {
+            alert('Data não pode ser menor que a data atual');
+            return;
+        }
+
+        if (dataService > dateProject) {
+            alert('Data da tarefa não pode ser maior que a data do projeto');
             return;
         }
 
@@ -77,6 +102,13 @@ function ServiceForm({handleSubmit, btnText, projectData, projectID}) {
             placeholder="Insira o valor total"
             handleOnChange={handleChange}
             value={service.cost ? service.cost : ''}></Input>
+            <Input
+            type="date" 
+            text="Data de conclusão da tarefa" 
+            name="date" 
+            placeholder="Insira a data final"
+            handleOnChange={handleChange}
+            value={service.date? service.date : ''}></Input>
             <TextArea 
             type="text"
             text="Descrição da tarefa"
