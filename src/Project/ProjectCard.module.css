@@ -86,13 +86,15 @@
     color: white;
 }
 
-img {
-    width: 100px;
-    height: 100px;
+.img_card {
+    width: 150px;
+    height: 150px;
     text-align: center;
     display: block;
     margin-right: auto;
     margin-left: auto;
     display: block;
     margin-bottom: 10px;
+    border-style: 10px solid black;
+    border-radius: 100%;
 }

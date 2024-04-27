@@ -68,6 +68,12 @@ function TeamForm({handleSubmit, btnText, projectData}) {
             name="nameColab"
             placeholder="Insira o nome do colaborador"
             handleOnChange={handleChange}></Input>
+            <Input 
+            type="text"
+            text="Imagem do colaborador"
+            name="imgColab"
+            placeholder="Caminho da imagem (URL)"
+            handleOnChange={handleChange}></Input>
             <Select 
             name="funcao_id" 
             text="Selecione a função" 

@@ -30,7 +30,18 @@
     width: 60px;
     height: 60px;
 }
+
 ul button:hover {
     background-color: transparent;
     color: red;
+}
+
+.nome {
+    text-decoration: none;
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+
+.perfil {
+    text-align: center;
 }

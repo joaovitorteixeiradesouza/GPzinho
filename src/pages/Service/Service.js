@@ -146,8 +146,10 @@ function Service() {
         .then((resp) => resp.json())
         .then((data) => {
             setProject(projectUpdated);
+            const foundService = data.services.find(service => service.id === serviceID);
+            setServicesForm(foundService);
+            setTeam(foundService.equipe);
             alert('Colaborador removido com sucesso!!');
-            window.location.reload();
         })
         .catch((err) => console.log(err));
     }
@@ -244,6 +246,7 @@ function Service() {
                                         <TeamCard
                                         id={serviceID}
                                         name={colab.nameColab}
+                                        img={colab.imgColab}
                                         funcao={colab.funcao.name}
                                         key={index}
                                         handleRemove={removeTeam}>

@@ -30,3 +30,118 @@
     height: 230px;
     margin: 2em 0;
 }
+
+.home_categories {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4em;
+    margin-top: 30px;
+}
+
+.home_categories h1 {
+    font-size: 2.5em;
+    margin-bottom: 1em;
+}
+
+.home_categories h1 span {
+    color: #046ee5;
+    padding: 0 .2em;
+}
+
+.categories {
+    display: flex;
+}
+
+.category {
+    margin-right: 20px;
+}
+
+.category img {
+    width: 250px;
+    height: 300px;
+}
+
+.category img:hover {
+    width: 300px;
+    height: 350px;
+}
+
+.category h2 {
+    height: 100px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.home_Team {
+    width: 100%;
+    height: 850px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4em;
+    margin-top: 30px;
+}
+
+.home_Team h1 {
+    font-size: 2.5em;
+    margin-bottom: 1em;
+}
+
+.Teams {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.Team {
+    margin-right: 40px;
+    text-align: center;
+}
+
+.Team img {
+    width: 250px;
+    height: 300px;
+    border: 1px solid transparent;
+    border-radius: 50%;
+}
+
+.Team img:hover {
+    width: 300px;
+    height: 350px;
+}
+
+.Team h2 {
+    height: 100px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.home_Frase {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4em;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.home_Frase h1 {
+    font-size: 2.5em;
+    margin-bottom: 1em;
+}
+
+.home_Frase p {
+    text-align: center;
+    font-size: 3em;
+    color: blue;
+
+}

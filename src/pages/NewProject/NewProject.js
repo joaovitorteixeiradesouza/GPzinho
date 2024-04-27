@@ -19,7 +19,7 @@ function NewProject(){
         project.cost = 0;
         project.services = [];
 
-        const userEmail = JSON.parse(localStorage.getItem("user_token")).email;
+        const userEmail = JSON.parse(localStorage.getItem("user_token")).id;
 
         project.user_email = userEmail;
 

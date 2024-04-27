@@ -4,116 +4,89 @@ import bcrypt from 'bcryptjs';
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const [usersStorage, setUsersStorage] = useState([]);
 
   useEffect(() => {
-      setTimeout(() => {
-        fetch(`http://localhost:5000/users`, {
-        method: 'GET',
-        headers: {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/users`, {
+          method: 'GET',
+          headers: {
             'Content-Type': 'application/json',
-        },
-    })
-    .then((resp) => resp.json())
-    .then((data) => {
+          },
+        });
+        const data = await response.json();
         setUsersStorage(data);
-        const userToken = localStorage.getItem("user_token");
-
-        if (userToken && usersStorage) {
-          const hasUser = JSON.parse(usersStorage)?.filter(
-            (user) => user.email === JSON.parse(userToken).email
-          );
-
-          if (hasUser) setUser(hasUser[0]);
-        }
-        })
-        .catch((err) => console.log(err))
-        }, 300);    
+      } catch (error) {
+        console.error('Erro ao buscar usuários:', error);
+      }
+    };
+    fetchUsers();
   }, []);
+
+  useEffect(() => {
+    const userToken = localStorage.getItem("user_token");
+    if (userToken && usersStorage) {
+      const { id } = JSON.parse(userToken);
+      const user = usersStorage.find((user) => user.id === id);
+      setUser(user);
+    }
+  }, [usersStorage]);
 
   const signin = async (email, password) => {
     try {
-        // Busca o usuário pelo email
-        const user = usersStorage.find((user) => user.email === email);
+      const user = usersStorage.find((user) => user.email === email);
 
-        // Se o usuário não existe
-        if (!user) {
-            return "Usuário não cadastrado";
-        }
-
-        // Verifica se a senha fornecida corresponde à senha armazenada no banco de dados
-        const passwordMatch = await bcrypt.compare(password, user.password);
-
-        if (passwordMatch) {
-            // Gera um token aleatório
-            const token = Math.random().toString(36).substring(2);
-
-            // Salva o token no localStorage
-            localStorage.setItem("user_token", JSON.stringify({ email, token }));
-
-            // Atualiza o estado do usuário
-            setUser({ email, password });
-
-            // Retorna null para indicar login bem-sucedido
-            return null;
-        } else {
-            // Senha incorreta
-            return "E-mail ou senha incorretos";
-        }
-    } catch (error) {
-        console.error('Erro durante o login:', error);
-        // Tratar o erro, se necessário
-        throw error;
-    }
-};
-  const signup = async (nome, email, password) => {
-    try {
-      const response = await fetch(`http://localhost:5000/users`, {
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-      });
-
-      const data = await response.json();
-      setUsersStorage(data);
-      const hasUser = usersStorage?.some((user) => user.email === email);
-
-      if (hasUser) {
-        return "Já tem uma conta com esse E-mail";
+      if (!user) {
+        return "Usuário não cadastrado";
       }
 
-      // Criptografa a senha antes de salvar no banco de dados
+      const passwordMatch = await bcrypt.compare(password, user.password);
+
+      if (passwordMatch) {
+        const token = Math.random().toString(36).substring(2);
+        localStorage.setItem("user_token", JSON.stringify({ id: user.id, token }));
+        setUser(user);
+        return null;
+      } else {
+        return "E-mail ou senha incorretos";
+      }
+    } catch (error) {
+      console.error('Erro durante o login:', error);
+      throw error;
+    }
+  };
+
+  const signup = async (nome, email, password) => {
+    try {
+      const hasUser = usersStorage.some((user) => user.email === email);
+
+      if (hasUser) {
+        return "Já existe uma conta com esse e-mail";
+      }
+
       const hashedPassword = await bcrypt.hash(password, 10);
 
       const newUser = {
         nome: nome,
         email: email,
         password: hashedPassword
-    };
-  
-      fetch("http://localhost:5000/users", {
-              method: "POST",
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(newUser),
-              
-          })
-          .then(
-              (resp => resp.json())
-          )
-          .then((data) => {
-              console.log(data);
-              return;
-          })
-          .catch(err => console.log(err))
-  } catch (error) {
-      console.error('Erro ao buscar usuários:', error);
-      // Tratar o erro, se necessário
+      };
+
+      await fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newUser),
+      });
+
+      return null;
+    } catch (error) {
+      console.error('Erro ao cadastrar usuário:', error);
       throw error;
-  }
+    }
   };
 
   const signout = () => {

@@ -47,3 +47,9 @@
     color: gray;
 }
 
+.botoes_form {
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+}

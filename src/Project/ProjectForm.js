@@ -10,7 +10,7 @@ function ProjectForm({handleSubmit, btnText, projectData}){
     const [categories, setCategories] = useState([]);
     const [project, setProject] = useState(projectData || {});
     const [projectDataGeral, setProjectDataGeral] = useState([]);
-    const userEmail = JSON.parse(localStorage.getItem("user_token")).email;
+    const userEmail = JSON.parse(localStorage.getItem("user_token")).id;
 
     useEffect(() => {
 

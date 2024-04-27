@@ -21,7 +21,7 @@ function Projects(){
 
     const location = useLocation();
 
-    const userEmail = JSON.parse(localStorage.getItem("user_token")).email;
+    const userEmail = JSON.parse(localStorage.getItem("user_token")).id;
 
     let message = '';
 

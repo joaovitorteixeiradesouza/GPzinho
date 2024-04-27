@@ -2,7 +2,7 @@ import Styles from '../Project/ProjectCard.module.css';
 import Logo from '../img/Empresario.png';
 import {BsFillTrashFill} from 'react-icons/bs';
 
-function TeamCard({id, name, funcao, handleRemove}) {
+function TeamCard({id, name, img, funcao, handleRemove}) {
     const remove = (e) => {
         e.preventDefault();
         handleRemove(id, name);
@@ -10,7 +10,7 @@ function TeamCard({id, name, funcao, handleRemove}) {
 
     return (
         <div className={Styles.project_card}>
-            <img src={Logo} alt="Empresário"></img>
+            <img src={ img == null ? Logo : img } alt="Empresário" className={Styles.img_card}></img>
             <h4>{name}</h4>
             <p>
                 Função: {funcao}

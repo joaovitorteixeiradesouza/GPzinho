@@ -61,8 +61,10 @@ function Project() {
         .then((resp) => resp.json())
         .then((data) => {
             setProject(data);
+            setServices(data.services)
             setShowProjectForm(!showProjectForm);
             alert('Projeto atualizado!');
+            setShowServiceForm(false);
         })
         .catch((err) => console.log(err))
     }
@@ -164,6 +166,90 @@ function Project() {
         return `${day}/${month}/${year}`;
     }
 
+    function generateReport() {
+        const formattedDate = formatDate(project.date);
+    
+        // Construa o conteúdo do relatório em HTML
+        const reportContent = `
+            <!DOCTYPE html>
+            <html lang="pt-BR">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Relatório do Projeto: ${project.name}</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                    }
+                    h1, h2 {
+                        margin-bottom: 10px;
+                    }
+                    p {
+                        margin: 5px 0;
+                    }
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                    }
+                    th, td {
+                        border: 1px solid #ddd;
+                        padding: 8px;
+                    }
+                    th {
+                        background-color: #f2f2f2;
+                    }
+                </style>
+            </head>
+            <body>
+                <h1>Relatório do Projeto: ${project.name}</h1>
+                <h2>Detalhes do Projeto</h2>
+                <p><strong>Categoria:</strong> ${project.category.name}</p>
+                <p><strong>Data de Conclusão:</strong> ${formattedDate}</p>
+                <p><strong>Total de Orçamento:</strong> R$${project.budget}</p>
+                <p><strong>Total Utilizado:</strong> R$${project.cost}</p>
+                <h2>Tarefas</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Custo</th>
+                            <th>Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${services.map(service => `
+                            <tr>
+                                <td>${service.name}</td>
+                                <td>R$${service.cost}</td>
+                                <td>${service.description}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </body>
+            </html>
+        `;
+    
+        // Crie um Blob com o conteúdo HTML
+        const blob = new Blob([reportContent], { type: 'text/html' });
+    
+        // Crie um link para download do Blob
+        const url = URL.createObjectURL(blob);
+    
+        // Crie um elemento <a> para acionar o download do relatório
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `relatorio_${project.name}.html`;
+    
+        // Adicione o link ao documento e clique nele para iniciar o download
+        document.body.appendChild(link);
+        link.click();
+    
+        // Remova o link do documento após o download
+        document.body.removeChild(link);
+    }
+    
+
     return (
         <>
             <NavBar></NavBar>
@@ -174,9 +260,14 @@ function Project() {
                             {message && <Message type={type} msg={message}></Message>}
                             <div className={Styles.details_container}>
                                 <h1>Projeto: {project.name}</h1>
-                                <button className={Styles.btn} onClick={toggleProjectForm}>
-                                    {!showProjectForm ? 'Editar Projeto' : 'Fechar'}
-                                </button>
+                                <div className={Styles.botoes_form}>
+                                    <button className={Styles.btn} onClick={toggleProjectForm}>
+                                        {!showProjectForm ? 'Editar Projeto' : 'Fechar'}
+                                    </button>
+                                    <button className={Styles.btn} onClick={generateReport}>
+                                        Gerar Relatório
+                                    </button>
+                                </div>
                                 {!showProjectForm ? (
                                     <div className={Styles.project_info}>
                                         <p>
