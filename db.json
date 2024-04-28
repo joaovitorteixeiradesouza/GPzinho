@@ -116,13 +116,28 @@
       "cost": 100,
       "services": [
         {
-          "name": "tESTETAREFA1222",
+          "name": "tESTETAREFA1223",
           "cost": "100",
           "date": "2024-05-10",
           "description": "TESTE",
           "id": "b6f54233-7206-4dad-b6a1-f40fe7ca8857",
           "projectID": "a92c",
-          "equipe": []
+          "equipe": [
+            {
+              "nameColab": "Paulo",
+              "funcao": {
+                "id": "2",
+                "name": "Testes"
+              }
+            },
+            {
+              "nameColab": "Luiz",
+              "funcao": {
+                "id": "1",
+                "name": "Desenvolvimento"
+              }
+            }
+          ]
         }
       ],
       "user_email": "591a"
@@ -169,7 +184,7 @@
     },
     {
       "id": "591a",
-      "nome": "Teste2",
+      "nome": "João Vitor",
       "email": "joaovitorteixeiradesouza2@gmail.com",
       "password": "$2a$10$H9OZq2LXlOHjPmE4QerPQObw7lwzlQxI0aDXozh8Jo7w23p6pLyde"
     }

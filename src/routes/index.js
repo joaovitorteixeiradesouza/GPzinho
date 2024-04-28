@@ -9,6 +9,7 @@ import NewProject from '../pages/NewProject/NewProject';
 import Project from '../pages/Project/Project';
 import useAuth from '../hooks/useAuth';
 import Service from '../pages/Service/Service';
+import UpdateUser from '../pages/UpdateUser/UpdateUser';
 
 const Private = ({Item}) => {
     const {signed} = useAuth();
@@ -27,6 +28,7 @@ const RoutesApp = () => {
                     <Route path="/projects" element={<Projects></Projects>}></Route>
                     <Route path="/contact" element={<Contact></Contact>}></Route>
                     <Route path="/newproject" element={<NewProject></NewProject>}></Route>
+                    <Route path="/updateuser" element={<UpdateUser></UpdateUser>}></Route>
                     <Route path="/project/:id" element={<Project></Project>}></Route>
                     <Route path="/project/:projectID/service/:serviceID" element={<Service></Service>}></Route>
                     <Route path="*" element={<Signin></Signin>}/>

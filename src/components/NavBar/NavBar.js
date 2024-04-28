@@ -41,7 +41,7 @@ function NavBar(){
                         <img src={Logo} alt="Gestor de Projetos" className={Styles.classImg}></img>
                     </Link>       
                     <h1 className={Styles.nome}>{user.nome}</h1><br/>
-                    <LinkButton to='/newproject' text='Editar Perfil'></LinkButton>
+                    <LinkButton to='/updateuser' text='Editar Perfil'></LinkButton>
                 </div>
                 <ul className={Styles.list}>
                     <li className={Styles.item}>
