@@ -187,6 +187,12 @@
       "nome": "João Vitor ",
       "email": "joaovitorteixeiradesouza2@gmail.com",
       "password": "$2a$10$5rGbNPo5HG3HfqlsC/EkieJRZ9CLZpa2Mu3qj83ZIs3enjxPGcj.a"
+    },
+    {
+      "id": "ca84",
+      "nome": "Maykon",
+      "email": "maykoncezar@hotmail.com",
+      "password": "$2a$10$rAiDlI0cUsr9IJ3.cJZ.9ed1G2TrTmfrUcTIkUNXiztW7OThoRJiO"
     }
   ]
 }
