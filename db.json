@@ -206,7 +206,18 @@
       "nome": "Maykon",
       "email": "maykoncezar@hotmail.com",
       "password": "$2a$10$rAiDlI0cUsr9IJ3.cJZ.9ed1G2TrTmfrUcTIkUNXiztW7OThoRJiO"
-    
+    },
+    {
+      "id": "e31b",
+      "nome": "Joao pedro",
+      "email": "joaovitorteixeiradesouza10@gmail.com",
+      "password": "$2a$10$3CQkEVKMfsFIq0v1a8hTWulc85LB9Lx6hcPE7iT0cZfMuVqD58gs."
+    },
+    {
+      "id": "f4c8",
+      "nome": "Pedro",
+      "email": "joaovitorteixeiradesouza11@gmail.com",
+      "password": "$2a$10$quTRKseVhIKrhvq0CxyJJems1HFrJi7Zzhjlm.EftrAOdtXYXhFU."
     }
   ]
 }

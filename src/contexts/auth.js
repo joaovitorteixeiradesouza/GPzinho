@@ -6,11 +6,14 @@ export const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [usersStorage, setUsersStorage] = useState([]);
+  
+  const isProduction = process.env.NODE_ENV === 'production';
+  const apiUrl = isProduction ? '/api/data/users' : 'http://localhost:5000/users';
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/users`, {
+        const response = await fetch(apiUrl, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -74,7 +77,7 @@ export const AuthProvider = ({ children }) => {
         password: hashedPassword
       };
 
-      await fetch("http://localhost:5000/users", {
+      await fetch(apiUrl, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
