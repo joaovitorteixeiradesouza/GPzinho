@@ -8,10 +8,12 @@ function TeamForm({handleSubmit, btnText, projectData}) {
     const [service, setService] = useState([projectData || {}]);
     const [funcoes, setFuncoes] = useState([]);
     const [equipe, setEquipe] = useState([]);
+    const isProduction = process.env.NODE_ENV === 'production';
+    const apiUrl = isProduction ? `/api/funcoes` : `http://localhost:5000/funcoes`;
 
     useEffect(() => {
         
-        fetch("http://localhost:5000/funcoes", {
+        fetch(apiUrl, {
             method: "GET", 
             headers: {
                 'Content-Type': 'application/json'

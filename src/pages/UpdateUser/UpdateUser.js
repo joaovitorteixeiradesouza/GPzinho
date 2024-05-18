@@ -21,10 +21,14 @@ function UpdateUser(){
 
     const userEmail = JSON.parse(localStorage.getItem("user_token")).id;
 
+    
+    const isProduction = process.env.NODE_ENV === 'production';
+    const apiUrl = isProduction ? `/api/users/${userEmail}` : `http://localhost:5000/users/${userEmail}`;
+
     useEffect(() => {
 
         setTimeout(() => {
-            fetch(`http://localhost:5000/users/${userEmail}`, {
+            fetch(apiUrl, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,7 +45,7 @@ function UpdateUser(){
 
     function editPost(user) {
 
-        fetch(`http://localhost:5000/users/${userEmail}`, {
+        fetch(apiUrl, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -61,7 +65,7 @@ function UpdateUser(){
 
         user.password = await bcrypt.hash(user.password, 10);
 
-        fetch(`http://localhost:5000/users/${userEmail}`, {
+        fetch(apiUrl, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

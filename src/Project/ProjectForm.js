@@ -13,8 +13,9 @@ function ProjectForm({handleSubmit, btnText, projectData}){
     const userEmail = JSON.parse(localStorage.getItem("user_token")).id;
 
     useEffect(() => {
-
-        fetch(`http://localhost:5000/projects?user_email=${userEmail}`, {
+        const isProduction = process.env.NODE_ENV === 'production';
+        const apiUrl = isProduction ? `/api/projects?user_email=${userEmail}` : `http://localhost:5000/projects?user_email=${userEmail}`;
+        fetch(apiUrl, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,9 +26,10 @@ function ProjectForm({handleSubmit, btnText, projectData}){
             setProjectDataGeral(data)
         })
         .catch((err) => console.log(err))
-
         
-        fetch("http://localhost:5000/categories", {
+        const isProduction2 = process.env.NODE_ENV === 'production';
+        const apiUrl2 = isProduction2 ? `/api/categories` : `http://localhost:5000/categories`;
+        fetch(apiUrl2, {
             method: "GET", 
             headers: {
                 'Content-Type': 'application/json'

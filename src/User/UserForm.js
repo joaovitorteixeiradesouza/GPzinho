@@ -10,10 +10,12 @@ function UserForm({handleSubmit, btnText, userData}){
     const [projectDataGeral, setProjectDataGeral] = useState([]);
     const [email2, setEmail2] = useState(userData || {});
     const userEmail = JSON.parse(localStorage.getItem("user_token")).id;
+    const isProduction = process.env.NODE_ENV === 'production';
+    const apiUrl = isProduction ? `/api/users` : `http://localhost:5000/users`;
 
     useEffect(() => {
 
-        fetch(`http://localhost:5000/users`, {
+        fetch(apiUrl, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

@@ -28,7 +28,9 @@ function Service() {
     useEffect(() => {
 
         setTimeout(() => {
-            fetch(`http://localhost:5000/projects/${projectID}`, {
+            const isProduction = process.env.NODE_ENV === 'production';
+            const apiUrl = isProduction ? `/api/projects/${projectID}` : `http://localhost:5000/projects/${projectID}`;
+            fetch(apiUrl, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -51,6 +53,8 @@ function Service() {
     }, [projectID]);
 
     function editPost(service) {
+        const isProduction = process.env.NODE_ENV === 'production';
+        const apiUrl = isProduction ? `/api/projects/${projectID}` : `http://localhost:5000/projects/${projectID}`;
         setMessage('');
         const lastCostService =  project.services.find((cost) => cost.id == serviceID)
 
@@ -76,7 +80,7 @@ function Service() {
         projectUpdated.services = servicesUpdated;
         project.cost = newCost;
     
-        fetch(`http://localhost:5000/projects/${projectID}`, {
+        fetch(apiUrl, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -101,6 +105,8 @@ function Service() {
     
 
         function createTeam(ServiceFormulario) {
+        const isProduction = process.env.NODE_ENV === 'production';
+        const apiUrl = isProduction ? `/api/projects/${projectID}` : `http://localhost:5000/projects/${projectID}`;
         setMessage('');
 
         // last service
@@ -109,7 +115,7 @@ function Service() {
         lastService.id = v4();
 
         // update project 
-        fetch(`http://localhost:5000/projects/${projectID}`, {
+        fetch(apiUrl, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -126,6 +132,8 @@ function Service() {
     }
 
     function removeTeam(serviceID, name) {
+        const isProduction = process.env.NODE_ENV === 'production';
+        const apiUrl = isProduction ? `/api/projects/${projectUpdated.id}` : `http://localhost:5000/projects/${projectUpdated.id}`;
         const updatedServices = project.services.map(service => {
             if (service.id === serviceID) {
                 const updatedEquipe = service.equipe.filter(member => member.nameColab !== name);
@@ -136,7 +144,7 @@ function Service() {
     
         const projectUpdated = { ...project, services: updatedServices };
     
-        fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
+        fetch(apiUrl, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

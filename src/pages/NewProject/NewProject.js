@@ -12,6 +12,8 @@ function NewProject(){
 
     const history = useNavigate();
     const { token_User } = useAuth();
+    const isProduction = process.env.NODE_ENV === 'production';
+    const apiUrl = isProduction ? `/api/projects` : `http://localhost:5000/projects`;
 
     function createPost(project){
 
@@ -23,7 +25,7 @@ function NewProject(){
 
         project.user_email = userEmail;
 
-        fetch("http://localhost:5000/projects", {
+        fetch(apiUrl, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

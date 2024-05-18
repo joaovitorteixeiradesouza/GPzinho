@@ -26,7 +26,10 @@ function Project() {
     useEffect(() => {
 
         setTimeout(() => {
-            fetch(`http://localhost:5000/projects/${id}`, {
+            
+    const isProduction = process.env.NODE_ENV === 'production';
+    const apiUrl = isProduction ? `/api/projects/${id}` : `http://localhost:5000/projects/${id}`;
+            fetch(apiUrl, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,6 +46,9 @@ function Project() {
     }, [id]);
 
     function editPost(project) {
+        const isProduction = process.env.NODE_ENV === 'production';
+        const apiUrl = isProduction ? `/api/projects/${project.id}` : `http://localhost:5000/projects/${project.id}`;
+
         setMessage('');
 
         // budget validation
@@ -51,7 +57,7 @@ function Project() {
             return false;
         }
 
-        fetch(`http://localhost:5000/projects/${project.id}`, {
+        fetch(apiUrl, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -70,6 +76,8 @@ function Project() {
     }
 
     function createService(ServiceFormulario) {
+        const isProduction = process.env.NODE_ENV === 'production';
+        const apiUrl = isProduction ? `/api/projects/${project.id}` : `http://localhost:5000/projects/${project.id}`;
         setMessage('');
 
         // last service
@@ -96,7 +104,7 @@ function Project() {
         project.services.push(lastService);
 
         // update project 
-        fetch(`http://localhost:5000/projects/${project.id}`, {
+        fetch(apiUrl, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -113,6 +121,8 @@ function Project() {
     }
 
     function removeService(id, cost) {
+        const isProduction = process.env.NODE_ENV === 'production';
+        const apiUrl = isProduction ? `/api/projects/${projectUpdated.id}` : `http://localhost:5000/projects/${projectUpdated.id}`;
 
         const servicesUpdated = project.services.filter(
             (service) => service.id !== id
@@ -123,7 +133,7 @@ function Project() {
         projectUpdated.services = servicesUpdated;
         projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost);
 
-        fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
+        fetch(apiUrl, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

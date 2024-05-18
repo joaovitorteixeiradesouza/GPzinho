@@ -30,8 +30,10 @@ function Projects(){
     } 
 
     useEffect(() => {
-        setTimeout(() => {    
-            fetch(`http://localhost:5000/projects?user_email=${userEmail}`, {
+        setTimeout(() => { 
+            const isProduction = process.env.NODE_ENV === 'production';
+            const apiUrl = isProduction ? `/api/projects?user_email=${userEmail}` : `http://localhost:5000/projects?user_email=${userEmail}`;   
+            fetch(apiUrl, {
                 method: 'GET',
                 Headers: {
                     'Content-Type': 'application/json',
@@ -46,7 +48,9 @@ function Projects(){
     }, [userEmail]);
 
     function removeProject(id) {
-        fetch(`http://localhost:5000/projects/${id}`,{
+        const isProduction = process.env.NODE_ENV === 'production';
+        const apiUrl = isProduction ? `/api/projects/${id}` : `http://localhost:5000/projects/${id}`;
+        fetch(apiUrl,{
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

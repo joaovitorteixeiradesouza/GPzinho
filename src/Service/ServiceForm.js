@@ -7,10 +7,12 @@ import TextArea from '../components/Form/TextArea/TextArea';
 function ServiceForm({handleSubmit, btnText, projectData, projectID}) {
     const [service, setService] = useState(projectData || {});
     const [projectDataGeral, setProjectDataGeral] = useState([]);
+    const isProduction = process.env.NODE_ENV === 'production';
+    const apiUrl = isProduction ? `/api/projects/${projectID}` : `http://localhost:5000/projects/${projectID}`;
     
     useEffect(() => {
 
-        fetch(`http://localhost:5000/projects/${projectID}`, {
+        fetch(apiUrl, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
