@@ -122,7 +122,7 @@ function Project() {
 
     function removeService(id, cost) {
         const isProduction = process.env.NODE_ENV === 'production';
-        const apiUrl = isProduction ? `/api/projects/${projectUpdated.id}` : `http://localhost:5000/projects/${projectUpdated.id}`;
+        const apiUrl = isProduction ? `/api/projects/${project.id}` : `http://localhost:5000/projects/${project.id}`;
 
         const servicesUpdated = project.services.filter(
             (service) => service.id !== id

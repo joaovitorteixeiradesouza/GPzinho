@@ -148,6 +148,29 @@
         }
       ],
       "user_email": "591a"
+    },
+    {
+      "id": "996d",
+      "name": "TesteApi2",
+      "budget": "100000",
+      "date": "2025-11-10",
+      "category": {
+        "id": "4",
+        "name": "Planejamento"
+      },
+      "cost": 1,
+      "services": [
+        {
+          "name": "testes",
+          "cost": "1",
+          "date": "2025-09-10",
+          "description": "teste",
+          "id": "cbcbff38-0621-4682-afd0-ca8f61fac858",
+          "projectID": "996d",
+          "equipe": []
+        }
+      ],
+      "user_email": "591a"
     }
   ],
   "categories": [
@@ -218,6 +241,12 @@
       "nome": "Pedro",
       "email": "joaovitorteixeiradesouza11@gmail.com",
       "password": "$2a$10$quTRKseVhIKrhvq0CxyJJems1HFrJi7Zzhjlm.EftrAOdtXYXhFU."
+    },
+    {
+      "id": "3571",
+      "nome": "Francisco",
+      "email": "Francisco@gmail.com",
+      "password": "$2a$10$KR2u/2vfpYBc7gfe0DDD4uVlfBGMTwAigA0tp.CXhjZYzv77d6kAq"
     }
   ]
 }

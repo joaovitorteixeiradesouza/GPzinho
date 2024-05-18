@@ -133,7 +133,7 @@ function Service() {
 
     function removeTeam(serviceID, name) {
         const isProduction = process.env.NODE_ENV === 'production';
-        const apiUrl = isProduction ? `/api/projects/${projectUpdated.id}` : `http://localhost:5000/projects/${projectUpdated.id}`;
+        const apiUrl = isProduction ? `/api/projects/${project.id}` : `http://localhost:5000/projects/${project.id}`;
         const updatedServices = project.services.map(service => {
             if (service.id === serviceID) {
                 const updatedEquipe = service.equipe.filter(member => member.nameColab !== name);
