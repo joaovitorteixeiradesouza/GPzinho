@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [usersStorage, setUsersStorage] = useState([]);
   
   const isProduction = process.env.NODE_ENV === 'production';
-  const apiUrl = isProduction ? '/api/data/users' : 'http://localhost:5000/users';
+  const apiUrl = isProduction ? '/api/users' : 'http://localhost:5000/users';
 
   useEffect(() => {
     const fetchUsers = async () => {
