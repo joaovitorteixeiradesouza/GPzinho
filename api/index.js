@@ -21,8 +21,21 @@ const middlewares = jsonServer.defaults();
 server.use(middlewares);
 server.use('/api', router);
 
-server.use((req, res) => {
-  res.status(404).send('Not Found');
+// Middleware para garantir que o conteúdo do arquivo não seja sobrescrito
+server.use((req, res, next) => {
+  if (req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE') {
+    fs.copyFileSync(tempDbPath, tempDbPath + '.backup');
+  }
+  next();
+});
+
+// Restaura o backup em caso de falha
+server.use((err, req, res, next) => {
+  if (fs.existsSync(tempDbPath + '.backup')) {
+    fs.copyFileSync(tempDbPath + '.backup', tempDbPath);
+    fs.unlinkSync(tempDbPath + '.backup');
+  }
+  res.status(500).send('Internal Server Error');
 });
 
 module.exports = (req, res) => {
