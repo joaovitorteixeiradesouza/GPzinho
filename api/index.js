@@ -1,15 +1,18 @@
 const jsonServer = require('json-server');
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
 
 // Caminho para o arquivo db.json original
 const dbPath = path.join(__dirname, '..', 'db.json');
 
 // Caminho para onde o db.json será copiado
-const tempDbPath = '/tmp/db.json';
+const tempDbPath = path.join(os.tmpdir(), 'db.json');
 
-// Copiar db.json para o diretório /tmp na inicialização
-fs.copyFileSync(dbPath, tempDbPath);
+// Verificar se o arquivo já foi copiado para evitar substituições repetidas
+if (!fs.existsSync(tempDbPath)) {
+  fs.copyFileSync(dbPath, tempDbPath);
+}
 
 const server = jsonServer.create();
 const router = jsonServer.router(tempDbPath);
