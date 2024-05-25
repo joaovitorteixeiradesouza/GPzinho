@@ -4,6 +4,16 @@
     background-color: #046ee5;
     padding: 1em;
     width: 100%;
+    flex-wrap: wrap; /* Para permitir a quebra de linha em telas menores */
+}
+
+.menuButton {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: #fff;
+    cursor: pointer;
 }
 
 .list {
@@ -14,7 +24,6 @@
 
 .item {
     margin-right: 1em;
-
 }
 
 .item a {
@@ -44,4 +53,28 @@ ul button:hover {
 
 .perfil {
     text-align: center;
+}
+
+/* Estilos para responsividade */
+@media (max-width: 768px) {
+    .menuButton {
+        display: block;
+    }
+
+    .list {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: #046ee5;
+        margin-top: 20px;
+    }
+
+    .list.open {
+        display: flex;
+    }
+
+    .item {
+        margin: 0.5em 0;
+    }
 }

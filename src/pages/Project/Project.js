@@ -1,5 +1,7 @@
 import {parse, v4} from 'uuid';
 import Styles from './Project.module.css';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -176,88 +178,82 @@ function Project() {
         return `${day}/${month}/${year}`;
     }
 
-    function generateReport() {
-        const formattedDate = formatDate(project.date);
-    
-        // Construa o conteúdo do relatório em HTML
-        const reportContent = `
-            <!DOCTYPE html>
-            <html lang="pt-BR">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Relatório do Projeto: ${project.name}</title>
-                <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                    }
-                    h1, h2 {
-                        margin-bottom: 10px;
-                    }
-                    p {
-                        margin: 5px 0;
-                    }
-                    table {
-                        width: 100%;
-                        border-collapse: collapse;
-                    }
-                    th, td {
-                        border: 1px solid #ddd;
-                        padding: 8px;
-                    }
-                    th {
-                        background-color: #f2f2f2;
-                    }
-                </style>
-            </head>
-            <body>
-                <h1>Relatório do Projeto: ${project.name}</h1>
-                <h2>Detalhes do Projeto</h2>
-                <p><strong>Categoria:</strong> ${project.category.name}</p>
-                <p><strong>Data de Conclusão:</strong> ${formattedDate}</p>
-                <p><strong>Total de Orçamento:</strong> R$${project.budget}</p>
-                <p><strong>Total Utilizado:</strong> R$${project.cost}</p>
-                <h2>Tarefas</h2>
-                <table>
-                    <thead>
+function generateReport() {
+    const formattedDate = formatDate(project.date);
+
+    // Construa o conteúdo do relatório em HTML
+    const reportContent = `
+        <div id="report-content" style="font-size: 40px">
+            <h1>Relatório do Projeto: ${project.name}</h1>
+            <h2>Detalhes do Projeto</h2>
+            <p><strong>Categoria:</strong> ${project.category.name}</p>
+            <p><strong>Data de Conclusão:</strong> ${formattedDate}</p>
+            <p><strong>Total de Orçamento:</strong> R$${project.budget}</p>
+            <p><strong>Total Utilizado:</strong> R$${project.cost}</p><br/>
+            <h2 style="text-align: center">Tarefas</h2><br/>
+            <table border="2px" style="text-align: center; margin-right: auto; margin-left: auto">
+                <thead>
+                    <tr>
+                        <th width="500">Nome</th>
+                        <th width="500">Custo</th>
+                        <th width="500">Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${services.map(service => `
                         <tr>
-                            <th>Nome</th>
-                            <th>Custo</th>
-                            <th>Descrição</th>
+                            <td>${service.name}</td>
+                            <td>R$${service.cost}</td>
+                            <td>${service.description}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        ${services.map(service => `
-                            <tr>
-                                <td>${service.name}</td>
-                                <td>R$${service.cost}</td>
-                                <td>${service.description}</td>
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-            </body>
-            </html>
-        `;
-    
-        // Crie um Blob com o conteúdo HTML
-        const blob = new Blob([reportContent], { type: 'text/html' });
-    
-        // Crie um link para download do Blob
-        const url = URL.createObjectURL(blob);
-    
-        // Crie um elemento <a> para acionar o download do relatório
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `relatorio_${project.name}.html`;
-    
-        // Adicione o link ao documento e clique nele para iniciar o download
-        document.body.appendChild(link);
-        link.click();
-    
-        // Remova o link do documento após o download
-        document.body.removeChild(link);
-    }
+                    `).join('')}
+                </tbody>
+            </table>
+        </div>
+    `;
+
+    // Adicione o conteúdo HTML ao documento temporariamente
+    const div = document.createElement('div');
+    div.innerHTML = reportContent;
+    document.body.appendChild(div);
+
+    // Use html2canvas para capturar o conteúdo HTML como uma imagem
+    html2canvas(div).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+
+        // Dimensões do PDF
+        const pdfWidth = 210; // Largura do PDF em mm
+        const pdfHeight = 295; // Altura do PDF em mm
+
+        // Dimensões da imagem
+        const imgWidth = pdfWidth - 20; // Margem de 10mm de cada lado
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        // Calcula a posição para centralizar a imagem
+        const marginLeft = 10; // Margem esquerda de 10mm
+        let position = 10; // Margem superior de 10mm
+        let heightLeft = imgHeight;
+
+        pdf.addImage(imgData, 'PNG', marginLeft, position, imgWidth, imgHeight);
+        heightLeft -= pdfHeight - 20;
+
+        while (heightLeft >= 0) {
+            position = heightLeft - imgHeight + 10; // Adiciona margem entre páginas
+            pdf.addPage();
+            pdf.addImage(imgData, 'PNG', marginLeft, position, imgWidth, imgHeight);
+            heightLeft -= pdfHeight - 20;
+        }
+
+        // Faça o download do PDF
+        pdf.save(`relatorio_${project.name}.pdf`);
+    }).finally(() => {
+        // Remova o conteúdo HTML temporário do documento
+        document.body.removeChild(div);
+    });
+}
+
+
     
 
     return (

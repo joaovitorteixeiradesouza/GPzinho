@@ -89,11 +89,15 @@ function ProjectForm({handleSubmit, btnText, projectData}){
             return;
         }
 
-        const dateCurrent = new Date()
+        const dateCurrent = new Date();
 
         if (dateProject < dateCurrent) {
-            alert('Data não pode ser menor que a data atual');
-            return;
+            if (dateProject.getDay() + 1 == dateCurrent.getDay() && dateProject.getMonth() == dateCurrent.getMonth() && dateProject.getFullYear() == dateCurrent.getFullYear()) {
+                
+            } else {
+                alert('Não pode ser inserida uma data de conclusão que já aconteceu.');
+                return;
+            }
         }
 
         handleSubmit(project);

@@ -63,6 +63,11 @@ const Signin = () => {
             <Link to="/signup">&nbsp;Registre-se</Link>
           </C.Strong>
         </C.LabelSignup>
+        <C.LabelSignup>
+          <C.Senha>
+            <Link to="/forgetPassword">Esqueceu Sua Senha?</Link>
+          </C.Senha>
+        </C.LabelSignup>
       </C.Content>
     </C.Container>
   );

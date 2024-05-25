@@ -72,12 +72,16 @@ function ServiceForm({handleSubmit, btnText, projectData, projectID}) {
         const dateCurrent = new Date()
 
         if (dataService < dateCurrent) {
-            alert('Data não pode ser menor que a data atual');
-            return;
+            if (dataService.getDay() + 1 == dateCurrent.getDay() && dataService.getMonth() == dateCurrent.getMonth() && dataService.getFullYear() == dateCurrent.getFullYear()) {
+                
+            } else {
+                alert('Não pode ser inserida uma data de conclusão que já aconteceu.');
+                return;
+            }
         }
 
         if (dataService > dateProject) {
-            alert('Data da tarefa não pode ser maior que a data do projeto');
+            alert('Data de conclusão da tarefa não pode ser maior que a data de conclusão do projeto.');
             return;
         }
 

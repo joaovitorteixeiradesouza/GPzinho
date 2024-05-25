@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Container from "../Container/Container";
 import Styles from './NavBar.module.css';
 import Logo from '../../img/Empresario.png';
@@ -12,28 +12,30 @@ function NavBar(){
     const { signout } = useAuth();
     const navigate = useNavigate();  
     const [user, setUser] = useState([]);
+    const [menuOpen, setMenuOpen] = useState(false);
     const userEmail = JSON.parse(localStorage.getItem("user_token")).id;
     const isProduction = process.env.NODE_ENV === 'production';
     const apiUrl = isProduction ? `/api/users/${userEmail}` : `http://localhost:5000/users/${userEmail}`;
 
     useEffect(() => {
-
         setTimeout(() => {
             fetch(apiUrl, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then((resp) => resp.json())
-        .then((data) => {
-            setUser(data);
-        })
-        .catch((err) => console.log(err))
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then((resp) => resp.json())
+            .then((data) => {
+                setUser(data);
+            })
+            .catch((err) => console.log(err))
         }, 300);
-
     }, [userEmail]);
 
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    }
 
     return(
         <nav className={Styles.navbar}>
@@ -45,7 +47,10 @@ function NavBar(){
                     <h1 className={Styles.nome}>{user.nome}</h1><br/>
                     <LinkButton to='/updateuser' text='Editar Perfil'></LinkButton>
                 </div>
-                <ul className={Styles.list}>
+                <button className={Styles.menuButton} onClick={toggleMenu}>
+                    ☰
+                </button>
+                <ul className={`${Styles.list} ${menuOpen ? Styles.open : ''}`}>
                     <li className={Styles.item}>
                         <Link to="/Home">Home</Link>
                     </li>
@@ -56,9 +61,9 @@ function NavBar(){
                         <Link to="/contact">Contato</Link>
                     </li>
                     <li className={Styles.item}>
-                    <Button Text="Sair" onClick={() => [signout(), navigate("/")]}>
-                        Sair
-                    </Button>
+                        <Button Text="Sair" onClick={() => [signout(), navigate("/")]}>
+                            Sair
+                        </Button>
                     </li>
                 </ul>
             </Container>

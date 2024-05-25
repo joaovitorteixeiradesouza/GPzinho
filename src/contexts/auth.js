@@ -92,6 +92,20 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const forgetpassword = async (email) => {
+    try {
+      const hasUser = usersStorage.some((user) => user.email === email);
+
+      if (!hasUser) {
+        return "E-mail não cadastrado.";
+      }
+      return null;
+    } catch (error) {
+      console.error('Erro ao recuperar Senha:', error);
+      throw error;
+    }
+  };
+
   const signout = () => {
     setUser(null);
     localStorage.removeItem("user_token");
@@ -99,7 +113,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, signed: !!user, signin, signup, signout }}
+      value={{ user, signed: !!user, signin, signup, forgetpassword, signout }}
     >
       {children}
     </AuthContext.Provider>

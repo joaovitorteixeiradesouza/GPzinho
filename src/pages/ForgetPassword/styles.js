@@ -30,7 +30,7 @@ export const Label = styled.label`
   color: #676767;
 `;
 
-export const LabelSignup = styled.label`
+export const LabelSignin = styled.label`
   font-size: 16px;
   color: #676767;
 `;
@@ -46,18 +46,5 @@ export const Strong = styled.strong`
   a {
     text-decoration: none;
     color: #676767;
-  }
-`;
-
-export const Senha = styled.label`
-  cursor: pointer;
-
-  a {
-    text-decoration: none;
-    color: #676767;
-  }
-
-  a:hover {
-    color: #046ee5;
   }
 `;

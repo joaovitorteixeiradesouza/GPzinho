@@ -171,6 +171,63 @@
         }
       ],
       "user_email": "591a"
+    },
+    {
+      "id": "19ab",
+      "name": "TesteMaisum",
+      "budget": "10000",
+      "date": "2024-05-26",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": [],
+      "user_email": "591a"
+    },
+    {
+      "id": "46fe",
+      "name": "TesteMaisdois",
+      "budget": "10000",
+      "date": "2024-05-26",
+      "category": {
+        "id": "4",
+        "name": "Planejamento"
+      },
+      "cost": 100,
+      "services": [
+        {
+          "name": "Teste",
+          "cost": "100",
+          "date": "2024-05-25",
+          "description": "teste",
+          "id": "45e23fde-8930-463a-910d-29d91419448e",
+          "projectID": "46fe",
+          "equipe": [
+            {
+              "nameColab": "PeDRO",
+              "funcao": {
+                "id": "2",
+                "name": "Testes"
+              }
+            }
+          ]
+        }
+      ],
+      "user_email": "591a"
+    },
+    {
+      "name": "teste213",
+      "budget": "1000",
+      "date": "2024-06-07",
+      "category": {
+        "id": "4",
+        "name": "Planejamento"
+      },
+      "cost": 0,
+      "services": [],
+      "user_email": "Yunz8wF",
+      "id": "xoKFOLB"
     }
   ],
   "categories": [
@@ -247,6 +304,12 @@
       "nome": "Francisco",
       "email": "Francisco@gmail.com",
       "password": "$2a$10$KR2u/2vfpYBc7gfe0DDD4uVlfBGMTwAigA0tp.CXhjZYzv77d6kAq"
+    },
+    {
+      "nome": "Testey",
+      "email": "joaovitorteixeiradesouza20@gmail.com",
+      "password": "$2a$10$1Ul1MnkzhR40c7c6wX9u.e1Npm/L83BbhSGkDy6KP2ssH9vqfs7L2",
+      "id": "Yunz8wF"
     }
   ]
 }

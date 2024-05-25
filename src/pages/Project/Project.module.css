@@ -1,5 +1,7 @@
 .project_details {
     padding: 2em;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .project_details h1,

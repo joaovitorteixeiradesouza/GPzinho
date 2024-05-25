@@ -2,8 +2,9 @@
     padding: 1em;
     border: 1px solid #7a7a7a;
     border-radius: 5px;
-    width: 24%;
-    margin: 0.5%; 
+    width: 32%;
+    margin: 0.5%;
+    box-sizing: border-box;
 }
 
 .project_card h4 {
@@ -57,6 +58,7 @@
     margin-top: 1.2em;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .project_card_actions a,
@@ -68,6 +70,7 @@
     font-size: .9em;
     padding: .6em 1em;
     margin-right: 1em;
+    margin-bottom: 0.5em;
     cursor: pointer;
     border: 1px solid #222;
     display: flex;
@@ -93,8 +96,28 @@
     display: block;
     margin-right: auto;
     margin-left: auto;
-    display: block;
     margin-bottom: 10px;
-    border-style: 10px solid black;
     border-radius: 100%;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+    .project_card {
+        width: 48%;
+        margin: 1%;
+    }
+}
+
+@media (max-width: 768px) {
+    .project_card {
+        width: 100%;
+        margin: 1% 0;
+    }
+
+    .project_card_actions a,
+    .project_card_actions button {
+        font-size: 0.8em;
+        padding: 0.5em 0.8em;
+        margin-right: 0.5em;
+    }
 }

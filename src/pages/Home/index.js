@@ -26,15 +26,15 @@ const Home = () => {
 
   return (
     <>  
-      <NavBar></NavBar>
+      <NavBar />
       <Container>
         <section className={StylesHome.home_container}>
             <h1>
                 Bem-vindo ao <span>GPzinho</span>
             </h1>
             <p>Comece a gerenciar os seus projetos agora mesmo!</p>
-            <LinkButton to='/newproject' text='Criar Projeto'></LinkButton>
-            <img src={Savings} alt="Gestor de Projetos"></img>
+            <LinkButton to='/newproject' text='Criar Projeto' />
+            <img src={Savings} alt="Gestor de Projetos" />
         </section>
         <section className={StylesHome.home_categories}>
             <h1>
@@ -42,58 +42,54 @@ const Home = () => {
             </h1>
             <div className={StylesHome.categories}>
               <div className={StylesHome.category}>
-                <img src={Category1} alt="Desenvolvimento"></img>
+                <img src={Category1} alt="Desenvolvimento" />
                 <h2>Desenvolvimento</h2>
               </div>
               <div className={StylesHome.category}>
-                <img src={Category2} alt="Design"></img>
+                <img src={Category2} alt="Design" />
                 <h2>Design</h2>
               </div>
               <div className={StylesHome.category}>
-                <img src={Category3} alt="Infraestrutura"></img>
+                <img src={Category3} alt="Infraestrutura" />
                 <h2>Infraestrutura</h2>
               </div>
               <div className={StylesHome.category}>
-                <img src={Category4} alt="Planejamento"></img>
+                <img src={Category4} alt="Planejamento" />
                 <h2>Planejamento</h2>
               </div>
             </div>
         </section>
         <section className={StylesHome.home_Team}>
-            <h1>
-                Equipe de Desenvolvimento
-            </h1>
+            <h1>Equipe de Desenvolvimento</h1>
             <div className={StylesHome.Teams}>
               <div className={StylesHome.Team}>
-                <img src={Staff1} alt="João Vitor"></img>
+                <img src={Staff1} alt="João Vitor" />
                 <h2>João Vitor</h2>
               </div>
               <div className={StylesHome.Team}>
-                <img src={Staff2} alt="Fabio"></img>
+                <img src={Staff2} alt="Fabio" />
                 <h2>Fabio</h2>
               </div>
               <div className={StylesHome.Team}>
-                <img src={Staff3} alt="George"></img>
+                <img src={Staff3} alt="George" />
                 <h2>George</h2>
               </div>
               <div className={StylesHome.Team}>
-                <img src={Staff4} alt="Elissandro"></img>
+                <img src={Staff4} alt="Elissandro" />
                 <h2>Elissandro</h2>
               </div>
               <div className={StylesHome.Team}>
-                <img src={Staff5} alt="Maykon"></img>
+                <img src={Staff5} alt="Maykon" />
                 <h2>Maykon</h2>
               </div>
               <div className={StylesHome.Team}>
-                <img src={Staff6} alt="Vivian"></img>
+                <img src={Staff6} alt="Vivian" />
                 <h2>Vivian</h2>
               </div>
             </div>
         </section>
         <section className={StylesHome.home_Frase}>
-            <h1>
-                Frase do dia
-            </h1>
+            <h1>Frase do dia</h1>
             <p>
               "Como um mestre de orquestra, um gestor de projetos harmoniza
               talentos e recursos, transformando desafios
@@ -101,7 +97,7 @@ const Home = () => {
             </p>
         </section>
       </Container>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 };
