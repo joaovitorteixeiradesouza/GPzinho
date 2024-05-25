@@ -195,6 +195,7 @@
 
     .home_categories {
         padding: 2em;
+        margin-top: -40px;
     }
 
     .home_Team {
@@ -215,7 +216,7 @@
     .home_container img,
     .category img,
     .Team img {
-        max-width: 150px;
+        max-width: 350px;
     }
 
     .home_Frase p {
