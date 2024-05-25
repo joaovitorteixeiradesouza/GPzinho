@@ -39,7 +39,7 @@
     align-items: center;
     justify-content: center;
     padding: 4em;
-    margin-top: 30px;
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -88,7 +88,7 @@
     align-items: center;
     justify-content: center;
     padding: 4em;
-    margin-top: 30px;
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -134,7 +134,7 @@
     align-items: center;
     justify-content: center;
     padding: 4em;
-    margin-top: 10px;
+    margin-top: -30px;
     margin-bottom: 40px;
     text-align: center;
 }
@@ -200,10 +200,12 @@
 
     .home_Team {
         padding: 2em;
+        margin-top: -30px;
     }
 
     .home_Frase {
         padding: 2em;
+        margin-top: -40px;
     }
 
     .home_container h1,
