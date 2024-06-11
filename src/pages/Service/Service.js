@@ -132,34 +132,36 @@ function Service() {
     }
 
     function removeTeam(serviceID, name) {
-        const isProduction = process.env.NODE_ENV === 'production';
-        const apiUrl = isProduction ? `/api/projects/${project.id}` : `http://localhost:5000/projects/${project.id}`;
-        const updatedServices = project.services.map(service => {
-            if (service.id === serviceID) {
-                const updatedEquipe = service.equipe.filter(member => member.nameColab !== name);
-                return { ...service, equipe: updatedEquipe };
+        if(window.confirm("Confirma a exclusão do colaborador?")){
+            const isProduction = process.env.NODE_ENV === 'production';
+            const apiUrl = isProduction ? `/api/projects/${project.id}` : `http://localhost:5000/projects/${project.id}`;
+            const updatedServices = project.services.map(service => {
+                if (service.id === serviceID) {
+                    const updatedEquipe = service.equipe.filter(member => member.nameColab !== name);
+                    return { ...service, equipe: updatedEquipe };
+                }
+                return service;
+            });
+        
+            const projectUpdated = { ...project, services: updatedServices };
+        
+            fetch(apiUrl, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(projectUpdated)
+            })
+            .then((resp) => resp.json())
+            .then((data) => {
+                setProject(projectUpdated);
+                const foundService = data.services.find(service => service.id === serviceID);
+                setServicesForm(foundService);
+                setTeam(foundService.equipe);
+                alert('Colaborador removido com sucesso!!');
+            })
+            .catch((err) => console.log(err));
             }
-            return service;
-        });
-    
-        const projectUpdated = { ...project, services: updatedServices };
-    
-        fetch(apiUrl, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(projectUpdated)
-        })
-        .then((resp) => resp.json())
-        .then((data) => {
-            setProject(projectUpdated);
-            const foundService = data.services.find(service => service.id === serviceID);
-            setServicesForm(foundService);
-            setTeam(foundService.equipe);
-            alert('Colaborador removido com sucesso!!');
-        })
-        .catch((err) => console.log(err));
     }
     
 

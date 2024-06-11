@@ -48,20 +48,23 @@ function Projects(){
     }, [userEmail]);
 
     function removeProject(id) {
-        const isProduction = process.env.NODE_ENV === 'production';
-        const apiUrl = isProduction ? `/api/projects/${id}` : `http://localhost:5000/projects/${id}`;
-        fetch(apiUrl,{
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-        .then((resp) => resp.json())
-        .then(() => {
-            setProjects(projects.filter((project) => project.id !== id));
-            setProjectMessage('Projeto removido com sucesso!');
-        })
-        .catch((err) => console.log(err))
+        if(window.confirm("Confirma a exclusão do Projeto?")) {
+            const isProduction = process.env.NODE_ENV === 'production';
+            const apiUrl = isProduction ? `/api/projects/${id}` : `http://localhost:5000/projects/${id}`;
+            fetch(apiUrl,{
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then((resp) => resp.json())
+            .then(() => {
+                setProjects(projects.filter((project) => project.id !== id));
+                setProjectMessage('Projeto removido com sucesso!');
+            })
+            .catch((err) => console.log(err))
+        }
+        
     }
 
     return(

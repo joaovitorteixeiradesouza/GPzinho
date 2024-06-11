@@ -123,33 +123,34 @@ function Project() {
     }
 
     function removeService(id, cost) {
-        const isProduction = process.env.NODE_ENV === 'production';
-        const apiUrl = isProduction ? `/api/projects/${project.id}` : `http://localhost:5000/projects/${project.id}`;
-
-        const servicesUpdated = project.services.filter(
-            (service) => service.id !== id
-        )
-
-        const projectUpdated = project;
-
-        projectUpdated.services = servicesUpdated;
-        projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost);
-
-        fetch(apiUrl, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(projectUpdated)
-        })
-        .then((resp) => resp.json())
-        .then((data) => {
-            setProject(projectUpdated)
-            setServices(servicesUpdated)
-            alert('Tarefa removida com sucesso!!')
-        })
-        .catch((err) => console.log(err))
-
+        if(window.confirm("Confirma a exclusão da tarefa?")){
+            const isProduction = process.env.NODE_ENV === 'production';
+            const apiUrl = isProduction ? `/api/projects/${project.id}` : `http://localhost:5000/projects/${project.id}`;
+    
+            const servicesUpdated = project.services.filter(
+                (service) => service.id !== id
+            )
+    
+            const projectUpdated = project;
+    
+            projectUpdated.services = servicesUpdated;
+            projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost);
+    
+            fetch(apiUrl, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(projectUpdated)
+            })
+            .then((resp) => resp.json())
+            .then((data) => {
+                setProject(projectUpdated)
+                setServices(servicesUpdated)
+                alert('Tarefa removida com sucesso!!')
+            })
+            .catch((err) => console.log(err))
+        }        
     }
 
     function toggleProjectForm() {

@@ -105,51 +105,6 @@
       "user_email": "591a"
     },
     {
-      "id": "a92c",
-      "name": "TESTE9001",
-      "budget": "10000",
-      "date": "2025-05-10",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 100,
-      "services": [
-        {
-          "name": "tESTETAREFA1223",
-          "cost": "100",
-          "date": "2024-05-10",
-          "description": "TESTE",
-          "id": "b6f54233-7206-4dad-b6a1-f40fe7ca8857",
-          "projectID": "a92c",
-          "equipe": [
-            {
-              "nameColab": "Paulo",
-              "funcao": {
-                "id": "2",
-                "name": "Testes"
-              }
-            },
-            {
-              "nameColab": "Luiz",
-              "funcao": {
-                "id": "1",
-                "name": "Desenvolvimento"
-              }
-            },
-            {
-              "nameColab": "Marcus",
-              "funcao": {
-                "id": "1",
-                "name": "Desenvolvimento"
-              }
-            }
-          ]
-        }
-      ],
-      "user_email": "591a"
-    },
-    {
       "id": "996d",
       "name": "TesteApi2",
       "budget": "100000",
@@ -194,26 +149,8 @@
         "id": "4",
         "name": "Planejamento"
       },
-      "cost": 100,
-      "services": [
-        {
-          "name": "Teste",
-          "cost": "100",
-          "date": "2024-05-25",
-          "description": "teste",
-          "id": "45e23fde-8930-463a-910d-29d91419448e",
-          "projectID": "46fe",
-          "equipe": [
-            {
-              "nameColab": "PeDRO",
-              "funcao": {
-                "id": "2",
-                "name": "Testes"
-              }
-            }
-          ]
-        }
-      ],
+      "cost": 0,
+      "services": [],
       "user_email": "591a"
     },
     {
