@@ -4,13 +4,11 @@ import Button from "../../components/Button";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import emailjs from 'emailjs-com';
 
 const ForgetPassword = () => {
-  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
-  const [emailConf, setEmailConf] = useState("");
-  const [senha, setSenha] = useState("");
-  const [senhaConf, setSenhaConf] = useState("");
+  const [user, setUser] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -33,12 +31,48 @@ const ForgetPassword = () => {
           setError(res);
           return;
         }
-    
-        alert("Senha enviada para seu E-mail com sucesso!");
-        navigate("/");
-        window.location.reload();
+
+        const isProduction = process.env.NODE_ENV === 'production';
+        const apiUrl = isProduction ? `/api/users?email=${email}` : `http://localhost:5000/users?email=${email}`;
+        let password = '';
+        let name_user = '';
+
+        const serviceID = 'service_0jss568';
+        const templateID = 'template_ygvyvze';
+        const userID = 'M_ZyGZc0UBdYz4mMj';
+
+        fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+        })
+        .then((resp) => resp.json())
+        .then((data) => {
+            setUser(data);
+            password = data[0].password;
+            name_user = data[0].nome;
+
+            const templateParams = {
+                to_email: email, // o email do destinatário
+                subject: 'Recuperação de Senha',
+                message: 'Clique no link para resetar a senha: Link', 
+                to_name: name_user,
+                from_name: 'GPzinho'
+            };
+
+            try {
+                const result = emailjs.send(serviceID, templateID, templateParams, userID);
+                alert('Verifique o seu e-mail para resetar a sua senha.');
+            } catch (error) {
+                console.error('Erro durante o envio de e-mail:', error);
+            }  
+        })
+        .catch((err) => console.log(err))
+
+                
     } catch (error) {
-        console.error('Erro durante o cadastro:', error);
+        console.error('Erro durante o envio:', error);
         // Tratar o erro, se necessário
     }
 };

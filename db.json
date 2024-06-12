@@ -107,7 +107,7 @@
     {
       "id": "996d",
       "name": "TesteApi2",
-      "budget": "100000",
+      "budget": "1000001",
       "date": "2025-11-10",
       "category": {
         "id": "4",
@@ -122,7 +122,22 @@
           "description": "teste",
           "id": "cbcbff38-0621-4682-afd0-ca8f61fac858",
           "projectID": "996d",
-          "equipe": []
+          "equipe": [
+            {
+              "nameColab": "Palo",
+              "funcao": {
+                "id": "2",
+                "name": "Testes"
+              }
+            },
+            {
+              "nameColab": "teste",
+              "funcao": {
+                "id": "2",
+                "name": "Testes"
+              }
+            }
+          ]
         }
       ],
       "user_email": "591a"
@@ -247,6 +262,12 @@
       "email": "joaovitorteixeiradesouza20@gmail.com",
       "password": "$2a$10$1Ul1MnkzhR40c7c6wX9u.e1Npm/L83BbhSGkDy6KP2ssH9vqfs7L2",
       "id": "Yunz8wF"
+    },
+    {
+      "nome": "default",
+      "email": "defaulttech976@gmail.com",
+      "password": "$2a$10$WngjCX7TtHL./jQcLR2RXONpTfDQaWYjdWhtwE7j2ZXagnaObi2ke",
+      "id": "-hJ344O"
     }
   ]
 }
