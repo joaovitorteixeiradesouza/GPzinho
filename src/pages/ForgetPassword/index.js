@@ -64,6 +64,7 @@ const ForgetPassword = () => {
             try {
                 const result = emailjs.send(serviceID, templateID, templateParams, userID);
                 alert('Verifique o seu e-mail para resetar a sua senha.');
+                navigate("/");
             } catch (error) {
                 console.error('Erro durante o envio de e-mail:', error);
             }  
